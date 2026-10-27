@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -59,8 +58,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const adsenseClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
-
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -83,14 +80,11 @@ export default function RootLayout({
           }}
         />
         {/* Google AdSense Script */}
-        {adsenseClientId && !adsenseClientId.includes("demo") && (
-          <Script
-            id="google-adsense"
-            strategy="afterInteractive"
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClientId}`}
-            crossOrigin="anonymous"
-          />
-        )}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8816826365173948"
+          crossOrigin="anonymous"
+        />
       </head>
       <body className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-blue-100 dark:selection:bg-blue-900 selection:text-blue-900 dark:selection:text-blue-100 transition-colors duration-150">
         <Navbar />
